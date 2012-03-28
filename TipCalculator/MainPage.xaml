@@ -33,14 +33,14 @@
             <ColumnDefinition Width="345*" />
          </Grid.ColumnDefinitions>
          <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,19,0,0" Name="billblock" Text="Bill" VerticalAlignment="Top" Width="56" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="60,0,0,0" Name="billbox" Text="$$$" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2" />
+         <TextBox Height="72" HorizontalAlignment="Left" Margin="60,0,0,0" Name="billbox" Text="0" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2" />
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,91,0,0" Name="taxblock" Text="Tax%" VerticalAlignment="Top" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="68,69,0,0" Name="taxbox" Text="%%" VerticalAlignment="Top" Width="388" Grid.ColumnSpan="2" />
+         <TextBox Height="72" HorizontalAlignment="Left" Margin="68,69,0,0" Name="taxbox" Text="0" VerticalAlignment="Top" Width="388" Grid.ColumnSpan="2" />
          <TextBlock Height="39" HorizontalAlignment="Left" Margin="-12,147,0,0" Name="peopleblock" Text="# People" VerticalAlignment="Top" Width="80" />
          <TextBox Height="72" HorizontalAlignment="Left" Margin="99,129,0,0" Name="peoplebox" Text="1" VerticalAlignment="Top" Width="357" Grid.ColumnSpan="2" />
          <Button Content="CALCULATE" Grid.Column="1" Height="72" HorizontalAlignment="Left" Margin="137,279,0,0" Name="calculatebtn" VerticalAlignment="Top" Width="191" Click="calculatebtn_Click" />
          <TextBlock Height="37" HorizontalAlignment="Left" Margin="6,212,0,0" Name="tipblock" Text="Tip %" VerticalAlignment="Top" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="68,192,0,0" Name="tipbox" Text="0" VerticalAlignment="Top" Width="388" Grid.ColumnSpan="2" />
+         <TextBox Height="72" HorizontalAlignment="Left" Margin="68,192,0,0" Name="tipbox" Text="15" VerticalAlignment="Top" Width="388" Grid.ColumnSpan="2" />
       </Grid>
       <Grid Grid.Row="1" Height="152" HorizontalAlignment="Left" Margin="15,357,0,0" Name="dataPanel" VerticalAlignment="Top" Width="436">
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,42,0,0" Name="totaltipblock" Text="Tip : " VerticalAlignment="Top" Width="233" />

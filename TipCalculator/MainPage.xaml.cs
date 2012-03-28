@@ -13,6 +13,11 @@ using Microsoft.Phone.Controls;
 
 namespace TipCalculator {
    public partial class MainPage : PhoneApplicationPage {
+      // Constants
+      const String BILL= "Bill : $";
+      const String TIP= "Tip : $";
+      const String TIPPP= "Tip per person : $";
+      const String BILLPP = "Bill per person : $";
       // Constructor
       public MainPage () {
          InitializeComponent();
@@ -20,10 +25,32 @@ namespace TipCalculator {
          totaltipblock.Visibility = Visibility.Collapsed;
          totalperpersonblock.Visibility = Visibility.Collapsed;
          tipperperson.Visibility = Visibility.Collapsed;
+
+         var numericScope = new InputScope();
+         var numericScopeName = new InputScopeName();
+         numericScopeName.NameValue = InputScopeNameValue.Number;
+         numericScope.Names.Add(numericScopeName);
+         billbox.InputScope = numericScope;
+         taxbox.InputScope = numericScope;
+         tipbox.InputScope = numericScope;
+         peoplebox.InputScope = numericScope;
       }
+      /// <summary>
+      /// Pass percent as decimal
+      /// </summary>
+      /// <param name="bill"></param>
+      /// <param name="percent"></param>
+      /// <returns></returns>
       private double GetTip ( double bill , double percent) {
          return bill * percent;
       }
+      /// <summary>
+      /// Pass percent and tax as decimal
+      /// </summary>
+      /// <param name="bill"></param>
+      /// <param name="tax"></param>
+      /// <param name="percent"></param>
+      /// <returns></returns>
       private double GetTipBeforeTax ( double bill, double tax, double percent ) {
          return (GetTip(bill / (1 + tax), percent));
       }
@@ -42,18 +69,18 @@ namespace TipCalculator {
          double tip = 0;
          if ( tippercent > 0 ) {
             if ( tax == 0 ) {
-               tip = GetTip(bill, tippercent);
+               tip = GetTip(bill, tippercent/100);
             } else {
-               tip = GetTipBeforeTax(bill, tax, tippercent);
+               tip = GetTipBeforeTax(bill, tax/100, tippercent/100);
             }
          }
-         totalbillblock.Text = totalbillblock.Text + (bill + tip).ToString();
-         totaltipblock.Text = totaltipblock.Text + tip.ToString();
+         totalbillblock.Text = BILL + (bill + tip).ToString();
+         totaltipblock.Text = TIP + tip.ToString();
          totalbillblock.Visibility = Visibility.Visible;
          totaltipblock.Visibility = Visibility.Visible;
          if ( people > 1 ) {
-            tipperperson.Text = tipperperson.Text + (tip / people).ToString();
-            totalperpersonblock.Text = totalperpersonblock.Text + (bill / people).ToString();
+            tipperperson.Text = TIPPP+ (tip / people).ToString("#.##");
+            totalperpersonblock.Text = BILLPP + (bill / people).ToString();
             totalperpersonblock.Visibility = Visibility.Visible;
             tipperperson.Visibility = Visibility.Visible;
          } else {
