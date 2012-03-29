@@ -48,7 +48,7 @@
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,78,0,0" Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="233" />
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,114,0,0" Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="233" />
       </Grid>
-      <my:AdControl AdUnitId="Image480_80" ApplicationId="test_client" Grid.Row="1" Height="80" HorizontalAlignment="Left" Margin="8,515,0,0" Name="adControl1" VerticalAlignment="Top" Width="480" />
+      <my:AdControl AdUnitId="Image480_80" ApplicationId="test_client" Grid.Row="1" Height="80" HorizontalAlignment="Left" Margin="0,515,0,0" Name="adControl1" VerticalAlignment="Top" Width="480" />
    </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

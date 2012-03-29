@@ -74,13 +74,13 @@ namespace TipCalculator {
                tip = GetTipBeforeTax(bill, tax/100, tippercent/100);
             }
          }
-         totalbillblock.Text = BILL + (bill + tip).ToString();
-         totaltipblock.Text = TIP + tip.ToString();
+         totalbillblock.Text = BILL + (bill + tip).ToString("#.##");
+         totaltipblock.Text = TIP + tip.ToString("#.##");
          totalbillblock.Visibility = Visibility.Visible;
          totaltipblock.Visibility = Visibility.Visible;
          if ( people > 1 ) {
             tipperperson.Text = TIPPP+ (tip / people).ToString("#.##");
-            totalperpersonblock.Text = BILLPP + (bill / people).ToString();
+            totalperpersonblock.Text = BILLPP + (bill / people).ToString("#.##");
             totalperpersonblock.Visibility = Visibility.Visible;
             tipperperson.Visibility = Visibility.Visible;
          } else {
