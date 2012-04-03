@@ -1,12 +1,12 @@
-﻿<xapCache source="C:\dev\TipCalculator\TipCalculator\Bin\Release\TipCalculator.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="3/29/2012 6:32:05 AM">
+﻿<xapCache source="C:\dev\TipCalculator\TipCalculator\Bin\Release\TipCalculator.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="4/3/2012 7:35:17 AM">
   <file source="C:\dev\TipCalculator\TipCalculator\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="3/29/2012 6:30:36 AM" />
-  <file source="C:\dev\TipCalculator\TipCalculator\Background.png" archivePath="Background.png" lastWriteTime="3/28/2012 8:02:27 AM" />
-  <file source="C:\dev\TipCalculator\TipCalculator\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="3/28/2012 8:02:27 AM" />
-  <file source="C:\dev\TipCalculator\TipCalculator\obj\Release\TipCalculator.dll" archivePath="TipCalculator.dll" lastWriteTime="3/29/2012 6:32:05 AM" />
+  <file source="C:\dev\TipCalculator\TipCalculator\Background.png" archivePath="Background.png" lastWriteTime="4/3/2012 7:33:38 AM" />
+  <file source="C:\dev\TipCalculator\TipCalculator\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="4/3/2012 7:33:13 AM" />
+  <file source="C:\dev\TipCalculator\TipCalculator\obj\Release\TipCalculator.dll" archivePath="TipCalculator.dll" lastWriteTime="4/3/2012 7:35:17 AM" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Advertising for Phone\Libraries\v7.1\Microsoft.Advertising.Mobile.dll" archivePath="Microsoft.Advertising.Mobile.dll" lastWriteTime="3/21/2012 4:14:52 PM" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Advertising for Phone\Libraries\v7.1\Microsoft.Advertising.Mobile.UI.dll" archivePath="Microsoft.Advertising.Mobile.UI.dll" lastWriteTime="3/21/2012 4:14:52 PM" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="9/15/2011 3:36:26 PM" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.Maps.dll" archivePath="Microsoft.Phone.Controls.Maps.dll" lastWriteTime="9/15/2011 3:36:26 PM" />
   <file source="C:\dev\TipCalculator\TipCalculator\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="3/28/2012 8:02:27 AM" />
-  <file source="C:\dev\TipCalculator\TipCalculator\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="3/29/2012 6:30:36 AM" />
+  <file source="C:\dev\TipCalculator\TipCalculator\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="4/3/2012 7:35:17 AM" />
 </xapCache>
