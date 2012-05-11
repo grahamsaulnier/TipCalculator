@@ -61,17 +61,22 @@ namespace TipCalculator {
          return ((bill + tip) / people);
       }
       private void calculatebtn_Click ( object sender, RoutedEventArgs e ) {
+         if ( billbox.Text == "" ) billbox.Text = "0";
+         if ( taxbox.Text == "" ) taxbox.Text = "0";
+         if ( tipbox.Text == "" ) tipbox.Text = "0";
+         if ( peoplebox.Text == "" ) peoplebox.Text = "0";
+
          double bill = System.Convert.ToDouble(billbox.Text);
          double tax = System.Convert.ToDouble(taxbox.Text);
-         double tippercent =  System.Convert.ToDouble(tipbox.Text);
+         double tippercent = System.Convert.ToDouble(tipbox.Text);
          int people = System.Convert.ToInt32(peoplebox.Text);
-         
+
          double tip = 0;
          if ( tippercent > 0 ) {
             if ( tax == 0 ) {
-               tip = GetTip(bill, tippercent/100);
+               tip = GetTip(bill, tippercent / 100);
             } else {
-               tip = GetTipBeforeTax(bill, tax/100, tippercent/100);
+               tip = GetTipBeforeTax(bill, tax / 100, tippercent / 100);
             }
          }
          totalbillblock.Text = BILL + (bill + tip).ToString("#.##");
@@ -79,13 +84,13 @@ namespace TipCalculator {
          totalbillblock.Visibility = Visibility.Visible;
          totaltipblock.Visibility = Visibility.Visible;
          if ( people > 1 ) {
-            tipperperson.Text = TIPPP+ (tip / people).ToString("#.##");
+            tipperperson.Text = TIPPP + (tip / people).ToString("#.##");
             totalperpersonblock.Text = BILLPP + (bill / people).ToString("#.##");
             totalperpersonblock.Visibility = Visibility.Visible;
             tipperperson.Visibility = Visibility.Visible;
          } else {
             totalperpersonblock.Visibility = Visibility.Collapsed;
-            tipperperson.Visibility = Visibility.Collapsed;         
+            tipperperson.Visibility = Visibility.Collapsed;
          }
       }
 
