@@ -46,8 +46,8 @@
          <Button Content="CALCULATE" Height="38" HorizontalAlignment="Left" Margin="189,394,0,0" x:Name="calculatebtn" VerticalAlignment="Top" Width="50" Click="calculatebtn_Click" Grid.ColumnSpan="2" />
          <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,230,0,0" x:Name="tipblock" Text="Tip %" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" />
          <TextBox Height="28" HorizontalAlignment="Left" Margin="132,394,0,0" x:Name="tipbox" Text="15" VerticalAlignment="Top" Width="51" />
-            <Button Content="^" Height="72" Margin="189,142,0,0" x:Name="plus1" VerticalAlignment="Top" Width="74" FontSize="80" HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Andy" Grid.ColumnSpan="2" />
-            <Button Content="^" Grid.Column="1" Height="72" Margin="32,141,130,0" x:Name="button2" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontFamily="Andy" FontSize="80" FontWeight="Bold" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            <Button Content="^" Height="72" Margin="189,142,0,0" x:Name="plus1" VerticalAlignment="Top" Width="74" FontSize="80" HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Andy" Grid.ColumnSpan="2" Click="plus1_Click" />
+            <Button Content="^" Grid.Column="1" Height="72" Margin="32,141,130,0" x:Name="minus1" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontFamily="Andy" FontSize="80" FontWeight="Bold" UseLayoutRounding="False" d:LayoutRounding="Auto" Click="minus1_Click">
             	<Button.RenderTransform>
             		<CompositeTransform Rotation="180.303"/>
             	</Button.RenderTransform>
@@ -55,9 +55,9 @@
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,293,0,0" Name="textBlock1" Text="Tip $" VerticalAlignment="Top" Width="59" />
             <TextBox Height="72" HorizontalAlignment="Left" Margin="66,266,0,0" Name="textBox1" Text="0" VerticalAlignment="Top" Width="153" TextChanged="textBox1_TextChanged" />
             <Slider x:Name="Tip__slider" Height="30" Margin="77,230,17,0" VerticalAlignment="Top" Foreground="#FF2C5468" Background="#FFAB3737" BorderBrush="#00914242" Maximum="25" Minimum="5" Grid.ColumnSpan="2" />
-            <CheckBox Content="Before tax" Grid.Column="1" Height="77" HorizontalAlignment="Right" Margin="0,0,6,0" Name="checkBox1" VerticalAlignment="Top" Width="188" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="15,86,0,0" Name="textBlock2" Text="Tax %" VerticalAlignment="Top" />
-            <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,0,0" Name="textBox2" Text="0" VerticalAlignment="Top" Width="142" />
+            <CheckBox Content="Before tax" Grid.Column="1" Height="77" HorizontalAlignment="Right" Margin="0,0,6,0" Name="taxflag" VerticalAlignment="Top" Width="188" Checked="taxflag_Checked" Unchecked="taxflag_Unchecked" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="15,86,0,0" Name="taxpercentlbl" Text="Tax %" VerticalAlignment="Top" />
+            <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,0,0" Name="taxtextbox" Text="0" VerticalAlignment="Top" Width="142" />
         </Grid>
       <Grid Grid.Row="1" Height="150" HorizontalAlignment="Left" Margin="15,359,0,0" x:Name="dataPanel" VerticalAlignment="Top" Width="436">
       	<Grid.ColumnDefinitions>
