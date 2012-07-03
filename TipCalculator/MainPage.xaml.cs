@@ -63,10 +63,7 @@ namespace TipCalculator {
       private double GetBillPerPerson(double bill, double tip, int people) {
          return ((bill + tip) / people);
       }
-
-      #region ButtonStuff
-      
-      private void calculatebtn_Click(object sender, RoutedEventArgs e) {
+      private void RecalculateEverything() {
          if(billbox.Text == "") billbox.Text = "0";
          if(taxbox.Text == "") taxbox.Text = "0";
          if(tipbox.Text == "") tipbox.Text = "0";
@@ -99,19 +96,26 @@ namespace TipCalculator {
             tipperperson.Visibility = Visibility.Collapsed;
          }
       }
+      #region ButtonStuff
+      
+      private void calculatebtn_Click(object sender, RoutedEventArgs e) {
+         RecalculateEverything();
+      }
 
       private void textBox1_TextChanged(object sender, TextChangedEventArgs e) {
-
+         RecalculateEverything();
       }
 
       private void taxflag_Checked(object sender, RoutedEventArgs e) {
          taxtextbox.IsEnabled = true;
+         RecalculateEverything();
          //taxpercentlbl.Visibility = Visibility.Visible;
          //taxtextbox.Visibility = Visibility.Visible;         
       }
 
       private void taxflag_Unchecked(object sender, RoutedEventArgs e) {
          taxtextbox.IsEnabled = false;
+         RecalculateEverything();
          //taxpercentlbl.Visibility = Visibility.Collapsed;
          //taxtextbox.Visibility = Visibility.Collapsed; 
       }
@@ -124,7 +128,12 @@ namespace TipCalculator {
          int ppl = System.Convert.ToInt32(peoplebox.Text);
          peoplebox.Text = ppl > 0 ? (ppl - 1).ToString() : ppl.ToString();
       }
+      private void Tip__slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+
+      }
       #endregion
+
+      
    }
 
 }
