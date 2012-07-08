@@ -18,7 +18,9 @@ namespace TipCalculator {
       const String TIP = "Tip : $";
       const String TIPPP = "Tip per person : $";
       const String BILLPP = "Bill per person : $";
+      const double DEFAULTBILL = 40f;
       // Constructor
+      bool initialized = false;
       public MainPage() {
          InitializeComponent();
          var numericScope = new InputScope();
@@ -33,10 +35,13 @@ namespace TipCalculator {
          numericScopeName.NameValue = InputScopeNameValue.Number;
          numericScope.Names.Add(numericScopeName);
          billbox.InputScope = numericScope;
+         billbox.Text = DEFAULTBILL.ToString("#.##");
          taxbox.InputScope = numericScope;
-         tipbox.InputScope = numericScope;
+         tipBox.InputScope = numericScope;
          peoplebox.InputScope = numericScope;
-         taxtextbox.InputScope = numericScope;         
+         taxtextbox.InputScope = numericScope;
+         initialized = true;
+         RecalculateEverything();
       }
       /// <summary>
       /// Pass percent as decimal
@@ -64,42 +69,47 @@ namespace TipCalculator {
          return ((bill + tip) / people);
       }
       private void RecalculateEverything() {
-         if(billbox.Text == "") billbox.Text = "0";
-         if(taxbox.Text == "") taxbox.Text = "0";
-         if(tipbox.Text == "") tipbox.Text = "0";
-         if(peoplebox.Text == "") peoplebox.Text = "0";
+         if(initialized) {
+            if(billbox.Text == null || billbox.Text == "") billbox.Text = "0";
+            if(taxbox.Text == null || taxbox.Text == "") taxbox.Text = "0";
+            if(tipBox.Text == null || tipBox.Text == "") tipBox.Text = "0";
+            if(peoplebox.Text == null || peoplebox.Text == "") peoplebox.Text = "0";
 
-         double bill = System.Convert.ToDouble(billbox.Text);
-         double tax = System.Convert.ToDouble(taxbox.Text);
-         double tippercent = System.Convert.ToDouble(tipbox.Text);
-         int people = System.Convert.ToInt32(peoplebox.Text);
+            double bill = System.Convert.ToDouble(billbox.Text);
+            double tax = System.Convert.ToDouble(taxbox.Text);
+            double tippercent = System.Convert.ToDouble(Tip__slider.Value);
+            int people = System.Convert.ToInt32(peoplebox.Text);
 
-         double tip = 0;
-         if(tippercent > 0) {
-            if(tax == 0) {
-               tip = GetTip(bill, tippercent / 100);
-            } else {
-               tip = GetTipBeforeTax(bill, tax / 100, tippercent / 100);
+            double tip = 0;
+            if(tippercent > 0) {
+               if(tax == 0) {
+                  tip = GetTip(bill, tippercent / 100);
+               } else {
+                  tip = GetTipBeforeTax(bill, tax / 100, tippercent / 100);
+               }
             }
-         }
-         totalbillblock.Text = BILL + (bill + tip).ToString("#.##");
-         totaltipblock.Text = TIP + tip.ToString("#.##");
-         totalbillblock.Visibility = Visibility.Visible;
-         totaltipblock.Visibility = Visibility.Visible;
-         if(people > 1) {
-            tipperperson.Text = TIPPP + (tip / people).ToString("#.##");
-            totalperpersonblock.Text = BILLPP + (bill / people).ToString("#.##");
-            totalperpersonblock.Visibility = Visibility.Visible;
-            tipperperson.Visibility = Visibility.Visible;
-         } else {
-            totalperpersonblock.Visibility = Visibility.Collapsed;
-            tipperperson.Visibility = Visibility.Collapsed;
+            totalbillblock.Text = BILL + (bill + tip).ToString("#.##");
+            totaltipblock.Text = TIP + tip.ToString("#.##");
+            totalbillblock.Visibility = Visibility.Visible;
+            totaltipblock.Visibility = Visibility.Visible;
+            if(people > 1) {
+               tipperperson.Text = TIPPP + (tip / people).ToString("#.##");
+               totalperpersonblock.Text = BILLPP + (bill / people).ToString("#.##");
+               totalperpersonblock.Visibility = Visibility.Visible;
+               tipperperson.Visibility = Visibility.Visible;
+            } else {
+               totalperpersonblock.Visibility = Visibility.Collapsed;
+               tipperperson.Visibility = Visibility.Collapsed;
+            }
+            tipBox.Text = tip.ToString("#.##");
+            taxtextbox.Text = tax.ToString();
+            billbox.Text = bill.ToString("#.##");
          }
       }
       #region ButtonStuff
       
       private void calculatebtn_Click(object sender, RoutedEventArgs e) {
-         RecalculateEverything();
+         //RecalculateEverything();
       }
 
       private void textBox1_TextChanged(object sender, TextChangedEventArgs e) {
@@ -121,17 +131,25 @@ namespace TipCalculator {
       }
 
       private void plus1_Click(object sender, RoutedEventArgs e) {
-         peoplebox.Text = (System.Convert.ToInt32(peoplebox.Text) + 1).ToString();         
+         peoplebox.Text = (System.Convert.ToInt32(peoplebox.Text) + 1).ToString();
+         RecalculateEverything();
       }
 
       private void minus1_Click(object sender, RoutedEventArgs e) {
          int ppl = System.Convert.ToInt32(peoplebox.Text);
          peoplebox.Text = ppl > 0 ? (ppl - 1).ToString() : ppl.ToString();
+         RecalculateEverything();
       }
       private void Tip__slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-
+         if(tipBox != null) tipBox.Text = Tip__slider.Value.ToString("#.##");
+         RecalculateEverything();
+      }
+      private void billbox_Tap(object sender, GestureEventArgs e) {
+         billbox.SelectAll();
       }
       #endregion
+
+      
 
       
    }
