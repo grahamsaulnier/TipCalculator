@@ -77,7 +77,7 @@ namespace TipCalculator {
 
             double bill = System.Convert.ToDouble(billbox.Text);
             double tax = System.Convert.ToDouble(taxbox.Text);
-            double tippercent = System.Convert.ToDouble(Tip__slider.Value);
+            double tippercent = System.Convert.ToDouble(tip_slider.Value);
             int people = System.Convert.ToInt32(peoplebox.Text);
 
             double tip = 0;
@@ -130,18 +130,20 @@ namespace TipCalculator {
          //taxtextbox.Visibility = Visibility.Collapsed; 
       }
 
-      private void plus1_Click(object sender, RoutedEventArgs e) {
+      private void plus1_Click(object sender, GestureEventArgs e)
+      {
          peoplebox.Text = (System.Convert.ToInt32(peoplebox.Text) + 1).ToString();
          RecalculateEverything();
       }
 
-      private void minus1_Click(object sender, RoutedEventArgs e) {
+      private void minus1_Click(object sender, GestureEventArgs e)
+      {
          int ppl = System.Convert.ToInt32(peoplebox.Text);
          peoplebox.Text = ppl > 0 ? (ppl - 1).ToString() : ppl.ToString();
          RecalculateEverything();
       }
-      private void Tip__slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-         if(tipBox != null) tipBox.Text = Tip__slider.Value.ToString("#.##");
+      private void tip_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+         if(tipBox != null) tipBox.Text = tip_slider.Value.ToString("#.##");
          RecalculateEverything();
       }
       private void billbox_Tap(object sender, GestureEventArgs e) {
