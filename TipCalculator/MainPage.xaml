@@ -12,6 +12,112 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI">
+	<phone:PhoneApplicationPage.Resources>
+		<ControlTemplate x:Key="PhoneSimpleRepeatButton" TargetType="RepeatButton">
+			<Rectangle Fill="Transparent"/>
+		</ControlTemplate>
+		<Style x:Key="Slider2" TargetType="Slider">
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="Maximum" Value="10"/>
+			<Setter Property="Minimum" Value="0"/>
+			<Setter Property="Value" Value="0"/>
+			<Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
+			<Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Slider">
+						<Grid Background="Transparent" Margin="0,0,5,0" Width="320">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="MouseOver"/>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalTrack"/>
+											<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalTrack"/>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalFill">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Grid x:Name="HorizontalTemplate" Background="#FF6F6054" Width="320">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="Auto" MinWidth="323"/>
+									<ColumnDefinition MinWidth="9"/>
+								</Grid.ColumnDefinitions>
+								<Rectangle x:Name="HorizontalFill" IsHitTestVisible="False" Fill="#FF453A31" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment, GridBox" Width="320" Margin="0,0,3,0"/>
+								<Rectangle x:Name="HorizontalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" RenderTransformOrigin="0.497,0.486" d:LayoutOverrides="VerticalAlignment, GridBox" Opacity="0.2" Grid.Column="1" Width="320" Margin="0,0,3,0"/>
+								<RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment, GridBox" Width="320"/>
+								<Thumb x:Name="HorizontalThumb" Grid.Column="1" Height="Auto" Width="320" Foreground="#FF75552B" BorderBrush="#FFAC1B25" Background="#FF1D56D1" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment, Height, VerticalMargin">
+									<Thumb.Template>
+										<ControlTemplate>
+											<Canvas Margin="1,1,0,10" RenderTransformOrigin="0.499,0.491" Opacity="0.2" HorizontalAlignment="Left" Width="18">
+												<Canvas.RenderTransform>
+													<CompositeTransform ScaleY="-1"/>
+												</Canvas.RenderTransform>
+												<Canvas.Background>
+													<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+												</Canvas.Background>
+												<Rectangle Height="37" IsHitTestVisible="True" Width="20" Stroke="#FF45372F">
+													<Rectangle.Fill>
+														<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+															<GradientStop Color="Black"/>
+															<GradientStop Color="#FF776759" Offset="0.58"/>
+															<GradientStop Color="#FF414141"/>
+														</LinearGradientBrush>
+													</Rectangle.Fill>
+												</Rectangle>
+											</Canvas>
+										</ControlTemplate>
+									</Thumb.Template>
+								</Thumb>
+							</Grid>
+							<Grid x:Name="VerticalTemplate" Margin="{StaticResource PhoneVerticalMargin}">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="12"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Rectangle x:Name="VerticalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="18,0,18,0" Grid.Row="2" Width="12"/>
+								<Rectangle x:Name="VerticalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="18,0,18,0" Opacity="0.2" Width="12"/>
+								<RepeatButton x:Name="VerticalTrackLargeChangeIncreaseRepeatButton" IsTabStop="False" Grid.Row="2" Template="{StaticResource PhoneSimpleRepeatButton}"/>
+								<RepeatButton x:Name="VerticalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}"/>
+								<Thumb x:Name="VerticalThumb" Height="12" Margin="18,0" Grid.Row="1" Width="12">
+									<Thumb.Template>
+										<ControlTemplate>
+											<Canvas Background="{StaticResource PhoneForegroundBrush}" Height="12" Width="12">
+												<Rectangle Fill="Transparent" Height="72" IsHitTestVisible="True" Canvas.Left="-18" Canvas.Top="-30" Width="48"/>
+											</Canvas>
+										</ControlTemplate>
+									</Thumb.Template>
+								</Thumb>
+							</Grid>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="SliderCopy" TargetType="Slider">
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="Maximum" Value="10"/>
+			<Setter Property="Minimum" Value="0"/>
+			<Setter Property="Value" Value="0"/>
+			<Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
+			<Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Slider">
+						<Slider Style="{StaticResource Slider2}" Foreground="#FF1A1A1A" BorderBrush="#FF0F0401"/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -23,7 +129,7 @@
         <!--TitlePanel contains the name of the application and page title-->
 
         <!--TitlePanel contains the name of the application and page title-->
-        <Image Grid.RowSpan="2" Source="table background.jpg" Stretch="Fill" Opacity="0.4" Height="768" VerticalAlignment="Top"/>
+        <Image Grid.RowSpan="2" Stretch="None" Opacity="0.6" Height="768" VerticalAlignment="Top" OpacityMask="Black" Source="/TipCalculator;component/Resource/Tip%20background.jpg" />
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
@@ -42,31 +148,28 @@
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="9,403,0,0" x:Name="taxblock" Text="Tax%" VerticalAlignment="Top" />
          <TextBox Height="39" HorizontalAlignment="Left" Margin="77,394,0,0" x:Name="taxbox" Text="0" VerticalAlignment="Top" Width="49" />
          <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,159,0,0" x:Name="numpeoplelbl" Text="# People" VerticalAlignment="Top" Width="116" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="109,142,0,0" x:Name="peoplebox" Text="1" VerticalAlignment="Top" Width="74" />
+         <TextBox Height="72" HorizontalAlignment="Left" Margin="109,142,0,0" x:Name="peoplebox" Text="1" VerticalAlignment="Top" Width="72" />
          <Button Content="CALCULATE" Height="38" HorizontalAlignment="Left" Margin="189,394,0,0" x:Name="calculatebtn" VerticalAlignment="Top" Width="50" Click="calculatebtn_Click" Grid.ColumnSpan="2" />
          <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,230,0,0" x:Name="tippercentlbl" Text="Tip %" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" />
-         <Button Content="^" Height="72" Margin="189,142,0,0" x:Name="plus1" VerticalAlignment="Top" Width="74" FontSize="80" HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Andy" Grid.ColumnSpan="2" Click="plus1_Click" />
-            <Button Content="^" Grid.Column="1" Height="72" Margin="110.889,214.333,51.111,0" x:Name="minus1" VerticalAlignment="Top" RenderTransformOrigin="0,0" FontFamily="Andy" FontSize="80" FontWeight="Bold" UseLayoutRounding="False" d:LayoutRounding="Auto" Click="minus1_Click">
-            	<Button.RenderTransform>
-            		<CompositeTransform Rotation="180.303"/>
-            	</Button.RenderTransform>
-            </Button>
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,293,0,0" Name="tipdollarlbl" Text="Tip $" VerticalAlignment="Top" Width="59" />
             <TextBox Height="72" HorizontalAlignment="Left" Margin="66,266,0,0" Name="tipBox" Text="0" VerticalAlignment="Top" Width="153" TextChanged="textBox1_TextChanged" />
          <CheckBox Content="Before tax" Grid.Column="1" Height="77" HorizontalAlignment="Right" Margin="0,0,6,0" Name="taxflagcheck" VerticalAlignment="Top" Width="188" Checked="taxflag_Checked" Unchecked="taxflag_Unchecked" />
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="15,86,0,0" Name="taxpercentlbl" Text="Tax %" VerticalAlignment="Top" />
             <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,0,0" Name="taxtextbox" Text="0" VerticalAlignment="Top" Width="142" />
-         <Slider x:Name="Tip__slider" Height="30" Margin="77,230,17,0" VerticalAlignment="Top" Foreground="#FF04080A" Background="#FFAB3737" BorderBrush="#00030202" Maximum="25" Minimum="5" Grid.ColumnSpan="2" ValueChanged="Tip__slider_ValueChanged" BorderThickness="1" />
-      </Grid>
+            <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="0,142,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Plus.jpg" Tap="plus1_Click" />
+            <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="66,142,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Minus.jpg" Tap="minus1_Click" />
+            <Slider Height="37" Margin="109,230,17,0" VerticalAlignment="Top" Style="{StaticResource SliderCopy}" Name="tip_slider" IsDirectionReversed="False" BorderBrush="#FF0F0301" Grid.ColumnSpan="2" MinHeight="5" MinWidth="5" BorderThickness="1" HorizontalAlignment="Left" MaxWidth="320" Minimum="1" Maximum="50" Value="1" LargeChange="0.1" Width="320" HorizontalContentAlignment="Left" />
+        </Grid>
       <Grid Grid.Row="1" Height="150" HorizontalAlignment="Left" Margin="15,359,0,0" x:Name="dataPanel" VerticalAlignment="Top" Width="436">
       	<Grid.ColumnDefinitions>
-      		<ColumnDefinition Width="0.724*"/>
-      		<ColumnDefinition Width="0.276*"/>
+      		<ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="294*" />
+                <ColumnDefinition Width="120*"/>
       	</Grid.ColumnDefinitions>
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,42,0,0" x:Name="totaltipblock" Text="Tip : " VerticalAlignment="Top" Width="233" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="3,0,0,116" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="233" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,78,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="233" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,114,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="233" />
+         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,42,0,0" x:Name="totaltipblock" Text="Tip : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
+         <TextBlock Height="30" HorizontalAlignment="Left" Margin="3,0,0,116" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="233" Grid.ColumnSpan="2" />
+         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,78,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
+         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,114,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
       </Grid>
       <my:AdControl AdUnitId="Image480_80" ApplicationId="test_client" Grid.Row="1" Height="80" HorizontalAlignment="Left" Margin="0,515,0,0" x:Name="adControl1" VerticalAlignment="Top" Width="480" />
     </Grid>
