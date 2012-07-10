@@ -158,8 +158,8 @@
             <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,0,0" Name="taxtextbox" Text="0" VerticalAlignment="Top" Width="142" />
             <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="0,142,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Plus.jpg" Tap="plus1_Click" />
             <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="66,142,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Minus.jpg" Tap="minus1_Click" />
-            <Slider Height="37" Margin="109,230,17,0" VerticalAlignment="Top" Style="{StaticResource SliderCopy}" Name="tip_slider" IsDirectionReversed="False" BorderBrush="#FF0F0301" Grid.ColumnSpan="2" MinHeight="5" MinWidth="5" BorderThickness="1" HorizontalAlignment="Left" MaxWidth="320" Minimum="1" Maximum="50" Value="1" LargeChange="0.1" Width="320" HorizontalContentAlignment="Left" />
-        </Grid>
+         <Slider Height="84" HorizontalAlignment="Left" Margin="77,208,0,0" Name="tip_slider" VerticalAlignment="Top" Width="362" Grid.ColumnSpan="2" ValueChanged="tip_slider_ValueChanged" />
+      </Grid>
       <Grid Grid.Row="1" Height="150" HorizontalAlignment="Left" Margin="15,359,0,0" x:Name="dataPanel" VerticalAlignment="Top" Width="436">
       	<Grid.ColumnDefinitions>
       		<ColumnDefinition Width="22*"/>
@@ -172,7 +172,7 @@
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,114,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
       </Grid>
       <my:AdControl AdUnitId="Image480_80" ApplicationId="test_client" Grid.Row="1" Height="80" HorizontalAlignment="Left" Margin="0,515,0,0" x:Name="adControl1" VerticalAlignment="Top" Width="480" />
-    </Grid>
+   </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
