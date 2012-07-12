@@ -122,56 +122,57 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="165"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
 
         <!--TitlePanel contains the name of the application and page title-->
-        <Image Grid.RowSpan="2" Stretch="None" Opacity="0.6" Height="768" VerticalAlignment="Top" OpacityMask="Black" Source="/TipCalculator;component/Resource/Tip%20background.jpg" />
+        <Image Grid.RowSpan="2" Stretch="None" Opacity="0.6" Height="768" VerticalAlignment="Top" OpacityMask="Black" Source="/TipCalculator;component/Resource/Tip%20background.jpg" Margin="0,8,0,0" RenderTransformOrigin="0.688,0.487" />
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,31,0,14">
             <TextBlock x:Name="ApplicationTitle" Text="Tip Calculator" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Enter Info" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Enter Info" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="Lindsey" FontWeight="Bold" Height="79"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="entriesPanel" Grid.Row="1" Margin="12,0,12,278">
          <Grid.ColumnDefinitions>
-         	<ColumnDefinition Width="219*" />
-         	<ColumnDefinition Width="237*" />
+         	<ColumnDefinition />
          </Grid.ColumnDefinitions>
-         <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,19,0,0" x:Name="billlbl" Text="Amount" VerticalAlignment="Top" Width="93" />
-         <TextBox Height="72" HorizontalAlignment="Right" x:Name="billbox" Text="0" VerticalAlignment="Top" Width="142" Tap="billbox_Tap" />
+         <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,16,0,0" x:Name="billlbl" Text="Bill" VerticalAlignment="Top" Width="93" FontFamily="Lindsey" FontSize="26.667" />
+         <TextBox Height="72" HorizontalAlignment="Right" x:Name="billbox" Text="0" VerticalAlignment="Top" Width="142" Tap="billbox_Tap" Margin="0,0,217,0" d:LayoutOverrides="GridBox, HorizontalMargin" />
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="9,403,0,0" x:Name="taxblock" Text="Tax%" VerticalAlignment="Top" />
-         <TextBox Height="39" HorizontalAlignment="Left" Margin="77,394,0,0" x:Name="taxbox" Text="0" VerticalAlignment="Top" Width="49" />
-         <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,159,0,0" x:Name="numpeoplelbl" Text="# People" VerticalAlignment="Top" Width="116" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="109,142,0,0" x:Name="peoplebox" Text="1" VerticalAlignment="Top" Width="72" />
-         <Button Content="CALCULATE" Height="38" HorizontalAlignment="Left" Margin="189,394,0,0" x:Name="calculatebtn" VerticalAlignment="Top" Width="50" Click="calculatebtn_Click" Grid.ColumnSpan="2" />
-         <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,230,0,0" x:Name="tippercentlbl" Text="Tip %" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,293,0,0" Name="tipdollarlbl" Text="Tip $" VerticalAlignment="Top" Width="59" />
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="66,266,0,0" Name="tipBox" Text="0" VerticalAlignment="Top" Width="153" TextChanged="textBox1_TextChanged" />
-         <CheckBox Content="Before tax" Grid.Column="1" Height="77" HorizontalAlignment="Right" Margin="0,0,6,0" Name="taxflagcheck" VerticalAlignment="Top" Width="188" Checked="taxflag_Checked" Unchecked="taxflag_Unchecked" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="15,86,0,0" Name="taxpercentlbl" Text="Tax %" VerticalAlignment="Top" />
-            <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,0,0" Name="taxtextbox" Text="0" VerticalAlignment="Top" Width="142" />
-            <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="0,142,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Plus.jpg" Tap="plus1_Click" />
-            <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="66,142,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Minus.jpg" Tap="minus1_Click" />
-            <Slider Height="37" Margin="109,230,17,0" VerticalAlignment="Top" Style="{StaticResource SliderCopy}" Name="tip_slider" IsDirectionReversed="False" BorderBrush="#FF0F0301" Grid.ColumnSpan="2" MinHeight="5" MinWidth="5" BorderThickness="1" HorizontalAlignment="Left" MaxWidth="320" Minimum="1" Maximum="50" Value="1" LargeChange="0.1" Width="320" HorizontalContentAlignment="Left" />
+         <TextBox Height="39" HorizontalAlignment="Left" Margin="77,394,0,0" x:Name="taxbox" Text="0" VerticalAlignment="Top" Width="49" d:LayoutOverrides="HorizontalAlignment" />
+         <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,145,0,0" x:Name="numpeoplelbl" Text="# People" VerticalAlignment="Top" Width="116" FontFamily="Lindsey" FontSize="26.667" d:LayoutOverrides="HorizontalAlignment" />
+         <TextBox Height="72" HorizontalAlignment="Left" Margin="97,129,0,0" x:Name="peoplebox" Text="1" VerticalAlignment="Top" Width="72" d:LayoutOverrides="HorizontalAlignment" />
+         <Button Content="CALCULATE" Height="38" HorizontalAlignment="Left" Margin="189,394,0,0" x:Name="calculatebtn" VerticalAlignment="Top" Width="50" Click="calculatebtn_Click" d:LayoutOverrides="GridBox" />
+         <TextBlock Height="37" HorizontalAlignment="Left" Margin="9,208,0,0" x:Name="tippercentlbl" Text="Tip %" VerticalAlignment="Top" FontFamily="Lindsey" FontSize="26.667" Width="81" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,273,0,0" Name="tipdollarlbl" Text="Tip $" VerticalAlignment="Top" Width="74" FontFamily="Lindsey" FontSize="26.667" />
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="97,253,0,0" Name="tipBox" Text="0" VerticalAlignment="Top" Width="153" TextChanged="textBox1_TextChanged" d:LayoutOverrides="GridBox" />
+         <CheckBox Content="Before tax" Height="77" HorizontalAlignment="Right" Margin="0,0,6,0" Name="taxflagcheck" VerticalAlignment="Top" Width="188" Checked="taxflag_Checked" Unchecked="taxflag_Unchecked" d:LayoutOverrides="HorizontalAlignment" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,85,0,0" Name="taxpercentlbl" Text="Tax %" VerticalAlignment="Top" FontFamily="Lindsey" FontSize="26.667" />
+            <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,217,0" Name="taxtextbox" Text="0" VerticalAlignment="Top" Width="142" d:LayoutOverrides="GridBox, HorizontalMargin" />
+            <Image Height="44" HorizontalAlignment="Left" Margin="181,143,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="44" Source="/TipCalculator;component/Images/ArrowUp.jpg" Tap="plus1_Click" d:LayoutOverrides="HorizontalAlignment" />
+            <Image Height="44" HorizontalAlignment="Right" Margin="0,0,175,138" Name="image2" Stretch="Fill" VerticalAlignment="Bottom" Width="44" Source="/TipCalculator;component/Images/ArrowDown.jpg" Tap="minus1_Click" ImageFailed="image2_ImageFailed" />
+            <Slider Height="37" Margin="110,208,0,0" VerticalAlignment="Top" Style="{StaticResource SliderCopy}" Name="tip_slider" IsDirectionReversed="False" BorderBrush="#FF0F0301" MinHeight="5" MinWidth="5" BorderThickness="1" HorizontalAlignment="Left" MaxWidth="320" Minimum="1" Maximum="50" Value="1" LargeChange="0.1" Width="320" HorizontalContentAlignment="Left" Background="#FFDADADB" />
         </Grid>
-      <Grid Grid.Row="1" Height="150" HorizontalAlignment="Left" Margin="15,359,0,0" x:Name="dataPanel" VerticalAlignment="Top" Width="436">
-      	<Grid.ColumnDefinitions>
-      		<ColumnDefinition Width="22*"/>
-                <ColumnDefinition Width="294*" />
-                <ColumnDefinition Width="120*"/>
-      	</Grid.ColumnDefinitions>
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,42,0,0" x:Name="totaltipblock" Text="Tip : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="3,0,0,116" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="233" Grid.ColumnSpan="2" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,78,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,114,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
-      </Grid>
       <my:AdControl AdUnitId="Image480_80" ApplicationId="test_client" Grid.Row="1" Height="80" HorizontalAlignment="Left" Margin="0,515,0,0" x:Name="adControl1" VerticalAlignment="Top" Width="480" />
+      <Border BorderBrush="#FFDFDEDE" BorderThickness="1" Height="182" Margin="12,0,12,96" Grid.Row="1" VerticalAlignment="Bottom">
+      	<Grid Height="181" HorizontalAlignment="Left" x:Name="dataPanel" VerticalAlignment="Top" Width="456" Background="#7F5F544E" Margin="-1,0,0,0">
+      		<Grid.ColumnDefinitions>
+      			<ColumnDefinition Width="0.05*"/>
+      			<ColumnDefinition Width="0.673*" />
+      			<ColumnDefinition Width="0.276*"/>
+      		</Grid.ColumnDefinitions>
+      		<TextBlock HorizontalAlignment="Left" Margin="8,49,0,0" x:Name="totaltipblock" Text="Tip : " Width="233" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" Height="40" VerticalAlignment="Top" />
+      		<TextBlock Height="41" HorizontalAlignment="Left" Margin="8,0,0,132" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="233" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
+      		<TextBlock Height="42" HorizontalAlignment="Left" Margin="8,93,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
+      		<TextBlock Height="38" HorizontalAlignment="Left" Margin="8,139,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
+      	</Grid>
+      </Border>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

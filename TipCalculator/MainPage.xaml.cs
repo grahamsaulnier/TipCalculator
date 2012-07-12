@@ -151,6 +151,11 @@ namespace TipCalculator {
       }
       #endregion
 
+      private void image2_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+      {
+
+      }
+
       
 
       
