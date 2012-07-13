@@ -101,6 +101,10 @@
     <Resource Include="Resource\Plus.jpg" />
     <Resource Include="Resource\Tip background.jpg" />
     <Resource Include="Background.png" />
+    <Resource Include="Minus.jpg" />
+    <Resource Include="Images\Plus.jpg" />
+    <Resource Include="Images\ArrowUp.jpg" />
+    <Resource Include="Images\ArrowDown.jpg" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />
