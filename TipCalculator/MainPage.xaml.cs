@@ -9,7 +9,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Microsoft.FSharp.Core;
 using Microsoft.Phone.Controls;
+
 
 namespace TipCalculator {
    public partial class MainPage : PhoneApplicationPage {
@@ -87,9 +89,9 @@ namespace TipCalculator {
             double tip = 0;
             if(tippercent > 0) {
                if(tax == 0) {
-                  tip = GetTip(bill, tippercent / 100);
+                  tip = TipCalFS.GetTip(bill, tippercent / 100);
                } else {
-                  tip = GetTipBeforeTax(bill, tax / 100, tippercent / 100);
+                  tip = TipCalFS.GetTipBeforeTax(bill, tax / 100, tippercent / 100);
                }
             }
             totalbillblock.Text = BILL + (bill + tip).ToString("#.##");
@@ -209,7 +211,7 @@ namespace TipCalculator {
          if(tippercentdsp != null) tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
       }
       #endregion
-
+      
    }
 
 }

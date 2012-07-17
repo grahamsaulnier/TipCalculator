@@ -12,189 +12,189 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI">
-	<phone:PhoneApplicationPage.Resources>
-		<ControlTemplate x:Key="PhoneSimpleRepeatButton" TargetType="RepeatButton">
-			<Rectangle Fill="Transparent"/>
-		</ControlTemplate>
-		<Style x:Key="Slider2" TargetType="Slider">
-			<Setter Property="BorderThickness" Value="0"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="Maximum" Value="10"/>
-			<Setter Property="Minimum" Value="0"/>
-			<Setter Property="Value" Value="0"/>
-			<Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
-			<Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Slider">
-						<Grid Background="Transparent" Margin="0,0,5,0" Width="320">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="MouseOver"/>
-									<VisualState x:Name="Disabled">
-										<Storyboard>
-											<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalTrack"/>
-											<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalTrack"/>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalFill">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Grid x:Name="HorizontalTemplate" Background="#FF6F6054" Width="320">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="Auto"/>
-									<ColumnDefinition Width="Auto" MinWidth="323"/>
-									<ColumnDefinition MinWidth="9"/>
-								</Grid.ColumnDefinitions>
-								<Rectangle x:Name="HorizontalFill" IsHitTestVisible="False" Fill="#FF453A31" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment, GridBox" Width="320" Margin="0,0,3,0"/>
-								<Rectangle x:Name="HorizontalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" RenderTransformOrigin="0.497,0.486" d:LayoutOverrides="VerticalAlignment, GridBox" Opacity="0.2" Grid.Column="1" Width="320" Margin="0,0,3,0"/>
-								<RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment, GridBox" Width="320"/>
-								<Thumb x:Name="HorizontalThumb" Grid.Column="1" Height="Auto" Width="320" Foreground="#FF75552B" BorderBrush="#FFAC1B25" Background="#FF1D56D1" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment, Height, VerticalMargin">
-									<Thumb.Template>
-										<ControlTemplate>
-											<Canvas Margin="1,1,0,10" RenderTransformOrigin="0.499,0.491" Opacity="0.2" HorizontalAlignment="Left" Width="18">
-												<Canvas.RenderTransform>
-													<CompositeTransform ScaleY="-1"/>
-												</Canvas.RenderTransform>
-												<Canvas.Background>
-													<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
-												</Canvas.Background>
-												<Rectangle Height="37" IsHitTestVisible="True" Width="20" Stroke="#FF45372F">
-													<Rectangle.Fill>
-														<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-															<GradientStop Color="Black"/>
-															<GradientStop Color="#FF776759" Offset="0.58"/>
-															<GradientStop Color="#FF414141"/>
-														</LinearGradientBrush>
-													</Rectangle.Fill>
-												</Rectangle>
-											</Canvas>
-										</ControlTemplate>
-									</Thumb.Template>
-								</Thumb>
-							</Grid>
-							<Grid x:Name="VerticalTemplate" Margin="{StaticResource PhoneVerticalMargin}">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="*"/>
-									<RowDefinition Height="12"/>
-									<RowDefinition Height="Auto"/>
-								</Grid.RowDefinitions>
-								<Rectangle x:Name="VerticalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="18,0,18,0" Grid.Row="2" Width="12"/>
-								<Rectangle x:Name="VerticalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="18,0,18,0" Opacity="0.2" Width="12"/>
-								<RepeatButton x:Name="VerticalTrackLargeChangeIncreaseRepeatButton" IsTabStop="False" Grid.Row="2" Template="{StaticResource PhoneSimpleRepeatButton}"/>
-								<RepeatButton x:Name="VerticalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}"/>
-								<Thumb x:Name="VerticalThumb" Height="12" Margin="18,0" Grid.Row="1" Width="12">
-									<Thumb.Template>
-										<ControlTemplate>
-											<Canvas Background="{StaticResource PhoneForegroundBrush}" Height="12" Width="12">
-												<Rectangle Fill="Transparent" Height="72" IsHitTestVisible="True" Canvas.Left="-18" Canvas.Top="-30" Width="48"/>
-											</Canvas>
-										</ControlTemplate>
-									</Thumb.Template>
-								</Thumb>
-							</Grid>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="SliderCopy" TargetType="Slider">
-			<Setter Property="BorderThickness" Value="0"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="Maximum" Value="10"/>
-			<Setter Property="Minimum" Value="0"/>
-			<Setter Property="Value" Value="0"/>
-			<Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
-			<Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Slider">
-						<Slider Style="{StaticResource Slider2}" Foreground="#FF1A1A1A" BorderBrush="#FF0F0401"/>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="TipCalcSlider1" TargetType="Slider">
-			<Setter Property="BorderThickness" Value="0"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="Maximum" Value="10"/>
-			<Setter Property="Minimum" Value="0"/>
-			<Setter Property="Value" Value="0"/>
-			<Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
-			<Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Slider">
-						<Grid Background="Transparent">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="MouseOver"/>
-									<VisualState x:Name="Disabled">
-										<Storyboard>
-											<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalTrack"/>
-											<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalTrack"/>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalFill">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalFill">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Grid x:Name="HorizontalTemplate" Margin="{StaticResource PhoneHorizontalMargin}">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="Auto"/>
-									<ColumnDefinition Width="12"/>
-									<ColumnDefinition Width="*"/>
-								</Grid.ColumnDefinitions>
-								<Rectangle x:Name="HorizontalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="0,22,0,26" d:LayoutOverrides="VerticalAlignment" Grid.ColumnSpan="3"/>
-								<Rectangle x:Name="HorizontalTrack" Grid.Column="2" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="0,22,0,26" Opacity="0.2" d:LayoutOverrides="VerticalAlignment"/>
-								<RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}">
-									<Slider Height="4" Width="19"/>
-								</RepeatButton>
-								<RepeatButton x:Name="HorizontalTrackLargeChangeIncreaseRepeatButton" Grid.Column="2" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}"/>
-								<Thumb x:Name="HorizontalThumb" Grid.Column="1" Height="12" Margin="0,22,0,50" Width="12">
-									<Thumb.Template>
-										<ControlTemplate>
-											<Canvas Width="12" Background="#FF1B9EE2" Margin="0,0,0,-24">
-												<Rectangle Fill="#00D42222" Height="84" IsHitTestVisible="True" Canvas.Left="-22" Canvas.Top="-22" Width="60"/>
-											</Canvas>
-										</ControlTemplate>
-									</Thumb.Template>
-								</Thumb>
-							</Grid>
-							<Grid x:Name="VerticalTemplate" Margin="{StaticResource PhoneVerticalMargin}">
-								<Grid.RowDefinitions>
-									<RowDefinition Height="*"/>
-									<RowDefinition Height="12"/>
-									<RowDefinition Height="Auto"/>
-								</Grid.RowDefinitions>
-								<Rectangle x:Name="VerticalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="18,0,18,0" Grid.Row="2" Width="12"/>
-								<Rectangle x:Name="VerticalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="18,0,18,0" Opacity="0.2" Width="12"/>
-								<RepeatButton x:Name="VerticalTrackLargeChangeIncreaseRepeatButton" IsTabStop="False" Grid.Row="2" Template="{StaticResource PhoneSimpleRepeatButton}"/>
-								<RepeatButton x:Name="VerticalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}"/>
-								<Thumb x:Name="VerticalThumb" Height="12" Margin="18,0" Grid.Row="1" Width="12">
-									<Thumb.Template>
-										<ControlTemplate>
-											<Canvas Background="{StaticResource PhoneForegroundBrush}" Height="12" Width="12">
-												<Rectangle Fill="Transparent" Height="72" IsHitTestVisible="True" Canvas.Left="-18" Canvas.Top="-30" Width="48"/>
-											</Canvas>
-										</ControlTemplate>
-									</Thumb.Template>
-								</Thumb>
-							</Grid>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</phone:PhoneApplicationPage.Resources>
+   <phone:PhoneApplicationPage.Resources>
+      <ControlTemplate x:Key="PhoneSimpleRepeatButton" TargetType="RepeatButton">
+         <Rectangle Fill="Transparent"/>
+      </ControlTemplate>
+      <Style x:Key="Slider2" TargetType="Slider">
+         <Setter Property="BorderThickness" Value="0"/>
+         <Setter Property="BorderBrush" Value="Transparent"/>
+         <Setter Property="Maximum" Value="10"/>
+         <Setter Property="Minimum" Value="0"/>
+         <Setter Property="Value" Value="0"/>
+         <Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
+         <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+         <Setter Property="Template">
+            <Setter.Value>
+               <ControlTemplate TargetType="Slider">
+                  <Grid Background="Transparent" Margin="0,0,5,0" Width="320">
+                     <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                           <VisualState x:Name="Normal"/>
+                           <VisualState x:Name="MouseOver"/>
+                           <VisualState x:Name="Disabled">
+                              <Storyboard>
+                                 <DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalTrack"/>
+                                 <DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalTrack"/>
+                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalFill">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                 </ObjectAnimationUsingKeyFrames>
+                              </Storyboard>
+                           </VisualState>
+                        </VisualStateGroup>
+                     </VisualStateManager.VisualStateGroups>
+                     <Grid x:Name="HorizontalTemplate" Background="#FF6F6054" Width="320">
+                        <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="Auto"/>
+                           <ColumnDefinition Width="Auto" MinWidth="323"/>
+                           <ColumnDefinition MinWidth="9"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="HorizontalFill" IsHitTestVisible="False" Fill="#FF453A31" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment, GridBox" Width="320" Margin="0,0,3,0"/>
+                        <Rectangle x:Name="HorizontalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" RenderTransformOrigin="0.497,0.486" d:LayoutOverrides="VerticalAlignment, GridBox" Opacity="0.2" Grid.Column="1" Width="320" Margin="0,0,3,0"/>
+                        <RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}" Grid.Column="1" d:LayoutOverrides="HorizontalAlignment, GridBox" Width="320"/>
+                        <Thumb x:Name="HorizontalThumb" Grid.Column="1" Height="Auto" Width="320" Foreground="#FF75552B" BorderBrush="#FFAC1B25" Background="#FF1D56D1" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment, Height, VerticalMargin">
+                           <Thumb.Template>
+                              <ControlTemplate>
+                                 <Canvas Margin="1,1,0,10" RenderTransformOrigin="0.499,0.491" Opacity="0.2" HorizontalAlignment="Left" Width="18">
+                                    <Canvas.RenderTransform>
+                                       <CompositeTransform ScaleY="-1"/>
+                                    </Canvas.RenderTransform>
+                                    <Canvas.Background>
+                                       <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                                    </Canvas.Background>
+                                    <Rectangle Height="37" IsHitTestVisible="True" Width="20" Stroke="#FF45372F">
+                                       <Rectangle.Fill>
+                                          <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                             <GradientStop Color="Black"/>
+                                             <GradientStop Color="#FF776759" Offset="0.58"/>
+                                             <GradientStop Color="#FF414141"/>
+                                          </LinearGradientBrush>
+                                       </Rectangle.Fill>
+                                    </Rectangle>
+                                 </Canvas>
+                              </ControlTemplate>
+                           </Thumb.Template>
+                        </Thumb>
+                     </Grid>
+                     <Grid x:Name="VerticalTemplate" Margin="{StaticResource PhoneVerticalMargin}">
+                        <Grid.RowDefinitions>
+                           <RowDefinition Height="*"/>
+                           <RowDefinition Height="12"/>
+                           <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="VerticalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="18,0,18,0" Grid.Row="2" Width="12"/>
+                        <Rectangle x:Name="VerticalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="18,0,18,0" Opacity="0.2" Width="12"/>
+                        <RepeatButton x:Name="VerticalTrackLargeChangeIncreaseRepeatButton" IsTabStop="False" Grid.Row="2" Template="{StaticResource PhoneSimpleRepeatButton}"/>
+                        <RepeatButton x:Name="VerticalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}"/>
+                        <Thumb x:Name="VerticalThumb" Height="12" Margin="18,0" Grid.Row="1" Width="12">
+                           <Thumb.Template>
+                              <ControlTemplate>
+                                 <Canvas Background="{StaticResource PhoneForegroundBrush}" Height="12" Width="12">
+                                    <Rectangle Fill="Transparent" Height="72" IsHitTestVisible="True" Canvas.Left="-18" Canvas.Top="-30" Width="48"/>
+                                 </Canvas>
+                              </ControlTemplate>
+                           </Thumb.Template>
+                        </Thumb>
+                     </Grid>
+                  </Grid>
+               </ControlTemplate>
+            </Setter.Value>
+         </Setter>
+      </Style>
+      <Style x:Key="SliderCopy" TargetType="Slider">
+         <Setter Property="BorderThickness" Value="0"/>
+         <Setter Property="BorderBrush" Value="Transparent"/>
+         <Setter Property="Maximum" Value="10"/>
+         <Setter Property="Minimum" Value="0"/>
+         <Setter Property="Value" Value="0"/>
+         <Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
+         <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+         <Setter Property="Template">
+            <Setter.Value>
+               <ControlTemplate TargetType="Slider">
+                  <Slider Style="{StaticResource Slider2}" Foreground="#FF1A1A1A" BorderBrush="#FF0F0401"/>
+               </ControlTemplate>
+            </Setter.Value>
+         </Setter>
+      </Style>
+      <Style x:Key="TipCalcSlider1" TargetType="Slider">
+         <Setter Property="BorderThickness" Value="0"/>
+         <Setter Property="BorderBrush" Value="Transparent"/>
+         <Setter Property="Maximum" Value="10"/>
+         <Setter Property="Minimum" Value="0"/>
+         <Setter Property="Value" Value="0"/>
+         <Setter Property="Background" Value="{StaticResource PhoneContrastBackgroundBrush}"/>
+         <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+         <Setter Property="Template">
+            <Setter.Value>
+               <ControlTemplate TargetType="Slider">
+                  <Grid Background="Transparent">
+                     <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                           <VisualState x:Name="Normal"/>
+                           <VisualState x:Name="MouseOver"/>
+                           <VisualState x:Name="Disabled">
+                              <Storyboard>
+                                 <DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalTrack"/>
+                                 <DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalTrack"/>
+                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalFill">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                 </ObjectAnimationUsingKeyFrames>
+                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalFill">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                 </ObjectAnimationUsingKeyFrames>
+                              </Storyboard>
+                           </VisualState>
+                        </VisualStateGroup>
+                     </VisualStateManager.VisualStateGroups>
+                     <Grid x:Name="HorizontalTemplate" Margin="{StaticResource PhoneHorizontalMargin}">
+                        <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="Auto"/>
+                           <ColumnDefinition Width="12"/>
+                           <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="HorizontalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="0,22,0,26" d:LayoutOverrides="VerticalAlignment" Grid.ColumnSpan="3"/>
+                        <Rectangle x:Name="HorizontalTrack" Grid.Column="2" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="0,22,0,26" Opacity="0.2" d:LayoutOverrides="VerticalAlignment"/>
+                        <RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}">
+                           <Slider Height="4" Width="19"/>
+                        </RepeatButton>
+                        <RepeatButton x:Name="HorizontalTrackLargeChangeIncreaseRepeatButton" Grid.Column="2" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}"/>
+                        <Thumb x:Name="HorizontalThumb" Grid.Column="1" Height="12" Margin="0,22,0,50" Width="12">
+                           <Thumb.Template>
+                              <ControlTemplate>
+                                 <Canvas Width="12" Background="#FF1B9EE2" Margin="0,0,0,-24">
+                                    <Rectangle Fill="#00D42222" Height="84" IsHitTestVisible="True" Canvas.Left="-22" Canvas.Top="-22" Width="60"/>
+                                 </Canvas>
+                              </ControlTemplate>
+                           </Thumb.Template>
+                        </Thumb>
+                     </Grid>
+                     <Grid x:Name="VerticalTemplate" Margin="{StaticResource PhoneVerticalMargin}">
+                        <Grid.RowDefinitions>
+                           <RowDefinition Height="*"/>
+                           <RowDefinition Height="12"/>
+                           <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="VerticalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="18,0,18,0" Grid.Row="2" Width="12"/>
+                        <Rectangle x:Name="VerticalTrack" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="18,0,18,0" Opacity="0.2" Width="12"/>
+                        <RepeatButton x:Name="VerticalTrackLargeChangeIncreaseRepeatButton" IsTabStop="False" Grid.Row="2" Template="{StaticResource PhoneSimpleRepeatButton}"/>
+                        <RepeatButton x:Name="VerticalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource PhoneSimpleRepeatButton}"/>
+                        <Thumb x:Name="VerticalThumb" Height="12" Margin="18,0" Grid.Row="1" Width="12">
+                           <Thumb.Template>
+                              <ControlTemplate>
+                                 <Canvas Background="{StaticResource PhoneForegroundBrush}" Height="12" Width="12">
+                                    <Rectangle Fill="Transparent" Height="72" IsHitTestVisible="True" Canvas.Left="-18" Canvas.Top="-30" Width="48"/>
+                                 </Canvas>
+                              </ControlTemplate>
+                           </Thumb.Template>
+                        </Thumb>
+                     </Grid>
+                  </Grid>
+               </ControlTemplate>
+            </Setter.Value>
+         </Setter>
+      </Style>
+   </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -217,7 +217,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="entriesPanel" Grid.Row="1" Margin="12,0,12,278">
          <Grid.ColumnDefinitions>
-         	<ColumnDefinition />
+            <ColumnDefinition />
          </Grid.ColumnDefinitions>
          <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,16,0,0" x:Name="billlbl" Text="Bill" VerticalAlignment="Top" Width="93" FontFamily="Lindsey" FontSize="26.667" />
          <TextBox Height="72" HorizontalAlignment="Right" x:Name="billbox" Text="0" VerticalAlignment="Top" Width="142" Tap="billbox_Tap" Margin="0,0,217,0" d:LayoutOverrides="GridBox, HorizontalMargin" TextChanged="GUIEventTextChangedCallRecalculateEverything" />
@@ -238,11 +238,11 @@
         
       </Grid>
       <Grid Grid.Row="1" Height="150" HorizontalAlignment="Left" Margin="15,359,0,0" x:Name="dataPanel" VerticalAlignment="Top" Width="436">
-      	<Grid.ColumnDefinitions>
-      		<ColumnDefinition Width="22*"/>
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="22*"/>
                 <ColumnDefinition Width="294*" />
                 <ColumnDefinition Width="120*"/>
-      	</Grid.ColumnDefinitions>
+         </Grid.ColumnDefinitions>
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,42,0,0" x:Name="totaltipblock" Text="Tip : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="3,0,0,116" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="233" Grid.ColumnSpan="2" />
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,78,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
@@ -268,17 +268,17 @@
       </Grid>
       <my:AdControl AdUnitId="Image480_80" ApplicationId="test_client" Grid.Row="1" Height="80" HorizontalAlignment="Left" Margin="0,515,0,0" x:Name="adControl1" VerticalAlignment="Top" Width="480" />
       <Border BorderBrush="#FFDFDEDE" BorderThickness="1" Height="182" Margin="12,0,12,96" Grid.Row="1" VerticalAlignment="Bottom">
-      	<Grid Height="181" HorizontalAlignment="Left" x:Name="dataPanel" VerticalAlignment="Top" Width="456" Background="#7F5F544E" Margin="-1,0,0,0">
-      		<Grid.ColumnDefinitions>
-      			<ColumnDefinition Width="23*"/>
-      			<ColumnDefinition Width="427*" />
-      			<ColumnDefinition Width="6*"/>
-      		</Grid.ColumnDefinitions>
-      		<TextBlock HorizontalAlignment="Left" Margin="8,49,0,0" x:Name="totaltipblock" Text="Tip : " Width="428" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" Height="40" VerticalAlignment="Top" />
-      		<TextBlock Height="41" HorizontalAlignment="Left" Margin="8,0,0,132" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="417" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
-      		<TextBlock Height="42" HorizontalAlignment="Left" Margin="8,93,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="416" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
-      		<TextBlock Height="38" HorizontalAlignment="Left" Margin="8,139,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="417" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
-      	</Grid>
+         <Grid Height="181" HorizontalAlignment="Left" x:Name="dataPanel" VerticalAlignment="Top" Width="456" Background="#7F5F544E" Margin="-1,0,0,0">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="23*"/>
+               <ColumnDefinition Width="427*" />
+               <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Margin="8,49,0,0" x:Name="totaltipblock" Text="Tip : " Width="428" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" Height="40" VerticalAlignment="Top" />
+            <TextBlock Height="41" HorizontalAlignment="Left" Margin="8,0,0,132" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="417" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
+            <TextBlock Height="42" HorizontalAlignment="Left" Margin="8,93,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="416" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
+            <TextBlock Height="38" HorizontalAlignment="Left" Margin="8,139,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="417" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
+         </Grid>
       </Border>
     </Grid>
 <!-- >>>>>>> 1cefefb3f9ea34f679f47a368132450960c5bcd4 -->
