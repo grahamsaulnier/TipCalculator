@@ -209,6 +209,7 @@ namespace TipCalculator {
       private void tipBox_TextChanged(object sender, TextChangedEventArgs e) {
          if(tip_slider != null) tip_slider.Value = System.Convert.ToDouble(tippercentdsp.Text.Substring(0, tippercentdsp.Text.Length - TIPSUFFIX.Length));
          if(tippercentdsp != null) tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
+         RecalculateEverything();
       }
       #endregion
       
