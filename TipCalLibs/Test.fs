@@ -20,10 +20,10 @@ module public TipCalFS =
    let GetTipPerPerson (tip:double) people = 
       tip / people
    
-   let GetTipPercent (tip:double) bill = 
+   let GetTipPercent (tip:double) (bill:double) = 
       tip / bill
 
-   let GetTipPercentBeforeTax (tip:double) (tax:double) bill = 
+   let GetTipPercentBeforeTax (tip:double) (tax:double) (bill:double) = 
       tip / (bill / (1.0 + tax))
 
    let GetBillPerPerson (bill:double) (tip:double) (people:double) = 

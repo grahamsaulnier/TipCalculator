@@ -44,7 +44,7 @@ namespace TipCalculator {
          billbox.InputScope = numericScope;
          billbox.Text = DEFAULTBILL.ToString("#.##");
          taxtextbox.InputScope = numericScope;
-         tipBox.InputScope = numericScope;
+         tipvaluebox.InputScope = numericScope;
          peoplebox.InputScope = numericScope;
          taxtextbox.InputScope = numericScope;
          tippercentdsp.InputScope = numericScope;
@@ -77,7 +77,7 @@ namespace TipCalculator {
          if(initialized) {
             if(billbox.Text == null || billbox.Text == "") billbox.Text = "0";
             if(taxtextbox.Text == null || taxtextbox.Text == "") taxtextbox.Text = "0";
-            if(tipBox.Text == null || tipBox.Text == "") tipBox.Text = "0";
+            if(tipvaluebox.Text == null || tipvaluebox.Text == "") tipvaluebox.Text = "0";
             if(peoplebox.Text == null || peoplebox.Text == "" || peoplebox.Text == "0")
                peoplebox.Text = "1";
 
@@ -107,7 +107,7 @@ namespace TipCalculator {
                totalperpersonblock.Visibility = Visibility.Collapsed;
                tipperperson.Visibility = Visibility.Collapsed;
             }
-            tipBox.Text = tip.ToString("#.##");
+            tipvaluebox.Text = tip.ToString("#.##");
             taxtextbox.Text = tax.ToString();
             billbox.Text = bill.ToString("#.##");
          }
@@ -173,17 +173,26 @@ namespace TipCalculator {
          RecalculateEverything();
       }
       private void tip_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-         if(tipBox != null) tipBox.Text = tip_slider.Value.ToString("#.##");
+         if(tipvaluebox != null) tipvaluebox.Text = TipCalFS.GetTip(System.Convert.ToDouble(billbox.Text),
+            tip_slider.Value).ToString("#.##");
          if(tippercentdsp != null) tippercentdsp.Text = Math.Round(tip_slider.Value,2).ToString() + TIPSUFFIX;
          RecalculateEverything();
       }
-      private void billbox_Tap(object sender, GestureEventArgs e) {
-         billbox.SelectAll();
-      }
+     
       private void UpdateTipPercentBox() {
          //if(tippercentdsp.Text.Contains(TIPSUFFIX) == false) tippercentdsp.Text = tippercentdsp.Text + TIPSUFFIX;
          if(tip_slider != null) tip_slider.Value = System.Convert.ToDouble(tippercentdsp.Text.Substring(0, tippercentdsp.Text.Length - TIPSUFFIX.Length));
-         if(tipBox != null) tipBox.Text = tip_slider.Value.ToString("#.##");
+         if(tipvaluebox != null) tipvaluebox.Text = tip_slider.Value.ToString("#.##");
+         RecalculateEverything();
+      }
+      private void tipvaluebox_TextChanged(object sender, TextChangedEventArgs e) {
+         if(tip_slider != null)
+            //tip_slider.Value = System.Convert.ToDouble(tipvaluebox.Text.Substring(0, tipvaluebox.Text.Length - TIPSUFFIX.Length));
+            tip_slider.Value = TipCalFS.GetTipPercent(System.Convert.ToDouble(tipvaluebox.Text),
+               (double)(System.Convert.ToDouble(billbox.Text) / (1 + System.Convert.ToDouble(taxtextbox.Text))));
+         if(tippercentdsp != null)
+            //tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
+            tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
          RecalculateEverything();
       }
       private void tippercentdsp_TextChanged(object sender, TextChangedEventArgs e) {
@@ -192,25 +201,26 @@ namespace TipCalculator {
       private void tippercentdsp_LostFocus(object sender, RoutedEventArgs e) {
          UpdateTipPercentBox();
       }
-      private void tippercentdsp_Tap(object sender, GestureEventArgs e) {
-         tippercentdsp.SelectAll();
+      #region Tapping!
+      private void billbox_Tap(object sender, GestureEventArgs e) {
+         billbox.SelectAll();
       }
       private void taxtextbox_Tap(object sender, GestureEventArgs e) {
          if(taxtextbox.IsEnabled) taxtextbox.SelectAll();
       }
-     
+
       private void peoplebox_Tap(object sender, GestureEventArgs e) {
          peoplebox.SelectAll();
       }
-      private void tipBox_Tap(object sender, GestureEventArgs e) {
-         tipBox.SelectAll();
+      private void tipvaluebox_Tap(object sender, GestureEventArgs e) {
+         tipvaluebox.SelectAll();
+      }
+      private void tippercentdsp_Tap(object sender, GestureEventArgs e) {
+         tippercentdsp.SelectAll();
       }
      
-      private void tipBox_TextChanged(object sender, TextChangedEventArgs e) {
-         if(tip_slider != null) tip_slider.Value = System.Convert.ToDouble(tippercentdsp.Text.Substring(0, tippercentdsp.Text.Length - TIPSUFFIX.Length));
-         if(tippercentdsp != null) tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
-         RecalculateEverything();
-      }
+      #endregion Tapping!
+     
       #endregion
       
    }
