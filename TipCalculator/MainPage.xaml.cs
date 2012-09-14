@@ -22,14 +22,16 @@ namespace TipCalculator {
       const String BILLPP = "Bill per person : $";
       const String TIPSUFFIX = "";
       const double DEFAULTBILL = 40f;
+      const double DEFAULTTIPPERC = 15f;
       const bool REVIEW = false;
       // Variables
       bool initialized = false;
-      List<List<String>> funphreases;
+      List<List<String>> funphrases;
       List<String> tier1, tier2, tier3, tier4;
 
       public MainPage() {
          InitializeComponent();
+
          var numericScope = new InputScope();
          var numericScopeName = new InputScopeName();
          totalbillblock.Visibility = Visibility.Collapsed;
@@ -43,14 +45,17 @@ namespace TipCalculator {
          numericScope.Names.Add(numericScopeName);
          billbox.InputScope = numericScope;
          billbox.Text = DEFAULTBILL.ToString("#.##");
+         tippercentdsp.Text = DEFAULTTIPPERC.ToString();
          taxtextbox.InputScope = numericScope;
          tipvaluebox.InputScope = numericScope;
          peoplebox.InputScope = numericScope;
          taxtextbox.InputScope = numericScope;
          tippercentdsp.InputScope = numericScope;
+         TipPercentBoxChange();
+         
          initialized = true;
          tipreviewdsp.Visibility = REVIEW ? Visibility.Visible : Visibility.Collapsed;
-         funphreases = new List<List<String>>();
+         funphrases = new List<List<String>>();
          PopulateTierLists();
          RecalculateEverything();
       }
@@ -85,22 +90,22 @@ namespace TipCalculator {
             double tax = System.Convert.ToDouble(taxtextbox.Text);
             double tippercent = System.Convert.ToDouble(tip_slider.Value);
             int people = System.Convert.ToInt32(peoplebox.Text);
-
             double tip = 0;
-            if(tippercent > 0) {
-               if(tax == 0) {
-                  tip = TipCalFS.GetTip(bill, tippercent / 100);
-               } else {
+
+           // if(tippercent > 0) {
+            //   if(tax == 0) {
+            //      tip = TipCalFS.GetTip(bill, tippercent / 100);
+            //   } else {
                   tip = TipCalFS.GetTipBeforeTax(bill, tax / 100, tippercent / 100);
-               }
-            }
+               //}
+          //  }
             totalbillblock.Text = BILL + (bill + tip).ToString("#.##");
             totaltipblock.Text = TIP + tip.ToString("#.##");
             totalbillblock.Visibility = Visibility.Visible;
             totaltipblock.Visibility = Visibility.Visible;
             if(people > 1) {
                tipperperson.Text = TIPPP + (tip / people).ToString("#.##");
-               totalperpersonblock.Text = BILLPP + (bill / people).ToString("#.##");
+               totalperpersonblock.Text = BILLPP + ((bill + tip) / people).ToString("#.##");
                totalperpersonblock.Visibility = Visibility.Visible;
                tipperperson.Visibility = Visibility.Visible;
             } else {
@@ -142,6 +147,7 @@ namespace TipCalculator {
 
       #region GUI interaction
       private void GUIEventTextChangedCallRecalculateEverything(object sender, TextChangedEventArgs e) {
+         //TODO Figure out how to check if we've put a decimal and make sure it has 00s after instead of truncating.
          RecalculateEverything();
       }
       private void GUIEventRoutedEventArgsCallRecalculateEverything(object sender, RoutedEventArgs e) {
@@ -171,35 +177,43 @@ namespace TipCalculator {
          int ppl = System.Convert.ToInt32(peoplebox.Text);
          peoplebox.Text = ppl > 1 ? (ppl - 1).ToString() : ppl.ToString();
          RecalculateEverything();
-      }
+      }     
       private void tip_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-         if(tipvaluebox != null) tipvaluebox.Text = TipCalFS.GetTip(System.Convert.ToDouble(billbox.Text),
-            tip_slider.Value).ToString("#.##");
-         if(tippercentdsp != null) tippercentdsp.Text = Math.Round(tip_slider.Value,2).ToString() + TIPSUFFIX;
-         RecalculateEverything();
-      }
-     
-      private void UpdateTipPercentBox() {
-         //if(tippercentdsp.Text.Contains(TIPSUFFIX) == false) tippercentdsp.Text = tippercentdsp.Text + TIPSUFFIX;
-         if(tip_slider != null) tip_slider.Value = System.Convert.ToDouble(tippercentdsp.Text.Substring(0, tippercentdsp.Text.Length - TIPSUFFIX.Length));
-         if(tipvaluebox != null) tipvaluebox.Text = tip_slider.Value.ToString("#.##");
+         if(tippercentdsp != null)
+            tippercentdsp.Text = tip_slider.Value.ToString();
+         if(tipvaluebox!= null)
+            tipvaluebox.Text = TipCalFS.GetTipBeforeTax(System.Convert.ToDouble(billbox.Text),
+                                                        System.Convert.ToDouble(taxtextbox.Text) / 100,
+                                                        tip_slider.Value).ToString();
          RecalculateEverything();
       }
       private void tipvaluebox_TextChanged(object sender, TextChangedEventArgs e) {
+         double tmptippercent = 0;
+         if(taxtextbox != null  && billbox!= null )
+            tmptippercent = TipCalFS.GetTipPercentBeforeTax(System.Convert.ToDouble(tipvaluebox.Text),
+                                                                   System.Convert.ToDouble(taxtextbox.Text) / 100,
+                                                                   System.Convert.ToDouble(billbox.Text)) * 100;
          if(tip_slider != null)
             //tip_slider.Value = System.Convert.ToDouble(tipvaluebox.Text.Substring(0, tipvaluebox.Text.Length - TIPSUFFIX.Length));
-            tip_slider.Value = TipCalFS.GetTipPercent(System.Convert.ToDouble(tipvaluebox.Text),
-               (double)(System.Convert.ToDouble(billbox.Text) / (1 + System.Convert.ToDouble(taxtextbox.Text))));
+            tip_slider.Value = tmptippercent;
          if(tippercentdsp != null)
             //tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
             tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
          RecalculateEverything();
       }
+      private void TipPercentBoxChange() {
+         if(tippercentdsp.Text == null || tippercentdsp.Text == "") tippercentdsp.Text = "0";
+         tip_slider.Value = System.Convert.ToDouble(tippercentdsp.Text);
+         tipvaluebox.Text = TipCalFS.GetTipBeforeTax(System.Convert.ToDouble(billbox.Text),
+                                                     System.Convert.ToDouble(taxtextbox.Text) / 100, 
+                                                     tip_slider.Value).ToString();
+         RecalculateEverything();
+      }
       private void tippercentdsp_TextChanged(object sender, TextChangedEventArgs e) {
-         UpdateTipPercentBox();
+         TipPercentBoxChange();
       }
       private void tippercentdsp_LostFocus(object sender, RoutedEventArgs e) {
-         UpdateTipPercentBox();
+         TipPercentBoxChange();
       }
       #region Tapping!
       private void billbox_Tap(object sender, GestureEventArgs e) {
