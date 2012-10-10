@@ -85,9 +85,13 @@ namespace TipCalculator {
             if(tipvaluebox.Text == null || tipvaluebox.Text == "") tipvaluebox.Text = "0";
             if(peoplebox.Text == null || peoplebox.Text == "" || peoplebox.Text == "0")
                peoplebox.Text = "1";
-
-            double bill = System.Convert.ToDouble(billbox.Text);
-            double tax = System.Convert.ToDouble(taxtextbox.Text);
+            
+            double bill = 
+               System.Convert.ToDouble(billbox.Text[billbox.Text.Length - 1] == '.' ?  
+                                       billbox.Text + "00" :billbox.Text);
+            double tax = 
+               System.Convert.ToDouble(taxtextbox.Text[taxtextbox.Text.Length - 1] == '.' ?
+                                       taxtextbox.Text + "00" : taxtextbox.Text);
             double tippercent = System.Convert.ToDouble(tip_slider.Value);
             int people = System.Convert.ToInt32(peoplebox.Text);
             double tip = 0;
@@ -114,7 +118,7 @@ namespace TipCalculator {
             }
             tipvaluebox.Text = tip.ToString("#.##");
             taxtextbox.Text = tax.ToString();
-            billbox.Text = bill.ToString("#.##");
+            //billbox.Text = bill.ToString("#.##");
          }
       }
       #region Simple calculations      
@@ -148,6 +152,7 @@ namespace TipCalculator {
       #region GUI interaction
       private void GUIEventTextChangedCallRecalculateEverything(object sender, TextChangedEventArgs e) {
          //TODO Figure out how to check if we've put a decimal and make sure it has 00s after instead of truncating.
+         
          RecalculateEverything();
       }
       private void GUIEventRoutedEventArgsCallRecalculateEverything(object sender, RoutedEventArgs e) {
