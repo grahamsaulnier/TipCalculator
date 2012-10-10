@@ -28,7 +28,8 @@ namespace TipCalculator {
       bool initialized = false;
       List<List<String>> funphrases;
       List<String> tier1, tier2, tier3, tier4;
-
+      char tempTipValueBoxLastChar = '\0', tempTipPercentBoxLastChar = '\0';
+      
       public MainPage() {
          InitializeComponent();
 
@@ -85,7 +86,7 @@ namespace TipCalculator {
             if(tipvaluebox.Text == null || tipvaluebox.Text == "") tipvaluebox.Text = "0";
             if(peoplebox.Text == null || peoplebox.Text == "" || peoplebox.Text == "0")
                peoplebox.Text = "1";
-            
+            //TODO set the temptip chars to nothing if they are not periods
             double bill = 
                System.Convert.ToDouble(billbox.Text[billbox.Text.Length - 1] == '.' ?  
                                        billbox.Text + "00" :billbox.Text);
@@ -95,7 +96,8 @@ namespace TipCalculator {
             double tippercent = System.Convert.ToDouble(tip_slider.Value);
             int people = System.Convert.ToInt32(peoplebox.Text);
             double tip = 0;
-
+            if(System.Char.IsDigit(tempTipPercentBoxLastChar)) tempTipPercentBoxLastChar = '\0';
+            if(System.Char.IsDigit(tempTipValueBoxLastChar)) tempTipValueBoxLastChar = '\0';
            // if(tippercent > 0) {
             //   if(tax == 0) {
             //      tip = TipCalFS.GetTip(bill, tippercent / 100);
@@ -116,8 +118,10 @@ namespace TipCalculator {
                totalperpersonblock.Visibility = Visibility.Collapsed;
                tipperperson.Visibility = Visibility.Collapsed;
             }
-            tipvaluebox.Text = tip.ToString("#.##");
-            taxtextbox.Text = tax.ToString();
+            tipvaluebox.Text = tip.ToString("#.##") + tempTipValueBoxLastChar;
+            tempTipValueBoxLastChar = '\0';
+            taxtextbox.Text = tax.ToString() + tempTipPercentBoxLastChar;
+            tempTipPercentBoxLastChar = '\0';
             //billbox.Text = bill.ToString("#.##");
          }
       }
@@ -191,13 +195,18 @@ namespace TipCalculator {
                                                         System.Convert.ToDouble(taxtextbox.Text) / 100,
                                                         tip_slider.Value).ToString();
          RecalculateEverything();
-      }
+      }      
       private void tipvaluebox_TextChanged(object sender, TextChangedEventArgs e) {
          double tmptippercent = 0;
+         tempTipValueBoxLastChar = tipvaluebox.Text[tipvaluebox.Text.Length - 1];
+         double tipValueBoxValue = System.Convert.ToDouble(
+                                   tempTipValueBoxLastChar == '.' ?
+                                   tipvaluebox.Text + "00" : tipvaluebox.Text);
+         
          if(taxtextbox != null  && billbox!= null )
-            tmptippercent = TipCalFS.GetTipPercentBeforeTax(System.Convert.ToDouble(tipvaluebox.Text),
-                                                                   System.Convert.ToDouble(taxtextbox.Text) / 100,
-                                                                   System.Convert.ToDouble(billbox.Text)) * 100;
+            tmptippercent = TipCalFS.GetTipPercentBeforeTax(tipValueBoxValue,
+                                                            System.Convert.ToDouble(taxtextbox.Text) / 100,
+                                                            System.Convert.ToDouble(billbox.Text)) * 100;
          if(tip_slider != null)
             //tip_slider.Value = System.Convert.ToDouble(tipvaluebox.Text.Substring(0, tipvaluebox.Text.Length - TIPSUFFIX.Length));
             tip_slider.Value = tmptippercent;
@@ -208,7 +217,9 @@ namespace TipCalculator {
       }
       private void TipPercentBoxChange() {
          if(tippercentdsp.Text == null || tippercentdsp.Text == "") tippercentdsp.Text = "0";
-         tip_slider.Value = System.Convert.ToDouble(tippercentdsp.Text);
+         tempTipPercentBoxLastChar = tippercentdsp.Text[tippercentdsp.Text.Length - 1];
+         tip_slider.Value = System.Convert.ToDouble(tempTipPercentBoxLastChar == '.' ? 
+                                                    tippercentdsp.Text += "00" : tippercentdsp.Text);
          tipvaluebox.Text = TipCalFS.GetTipBeforeTax(System.Convert.ToDouble(billbox.Text),
                                                      System.Convert.ToDouble(taxtextbox.Text) / 100, 
                                                      tip_slider.Value).ToString();
