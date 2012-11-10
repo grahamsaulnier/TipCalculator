@@ -118,9 +118,9 @@ namespace TipCalculator {
                totalperpersonblock.Visibility = Visibility.Collapsed;
                tipperperson.Visibility = Visibility.Collapsed;
             }
-            tipvaluebox.Text = tip.ToString("#.##") + tempTipValueBoxLastChar;
+            tipvaluebox.Text = tip.ToString("#.##");// +tempTipValueBoxLastChar;
             tempTipValueBoxLastChar = '\0';
-            taxtextbox.Text = tax.ToString() + tempTipPercentBoxLastChar;
+            taxtextbox.Text = tax.ToString();// +tempTipPercentBoxLastChar;
             tempTipPercentBoxLastChar = '\0';
             //billbox.Text = bill.ToString("#.##");
          }
@@ -195,15 +195,15 @@ namespace TipCalculator {
                                                         System.Convert.ToDouble(taxtextbox.Text) / 100,
                                                         tip_slider.Value).ToString();
          RecalculateEverything();
-      }      
-      private void tipvaluebox_TextChanged(object sender, TextChangedEventArgs e) {
+      }
+      private void tipvaluebox_change_made() {
          double tmptippercent = 0;
          tempTipValueBoxLastChar = tipvaluebox.Text[tipvaluebox.Text.Length - 1];
          double tipValueBoxValue = System.Convert.ToDouble(
                                    tempTipValueBoxLastChar == '.' ?
-                                   tipvaluebox.Text + "00" : tipvaluebox.Text);
-         
-         if(taxtextbox != null  && billbox!= null )
+                                   (tipvaluebox.Text + "00") : tipvaluebox.Text);
+
+         if(taxtextbox != null && billbox != null)
             tmptippercent = TipCalFS.GetTipPercentBeforeTax(tipValueBoxValue,
                                                             System.Convert.ToDouble(taxtextbox.Text) / 100,
                                                             System.Convert.ToDouble(billbox.Text)) * 100;
@@ -214,6 +214,12 @@ namespace TipCalculator {
             //tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
             tippercentdsp.Text = Math.Round(tip_slider.Value, 2).ToString() + TIPSUFFIX;
          RecalculateEverything();
+      }
+      private void tipvaluebox_TextChanged(object sender, TextChangedEventArgs e) {
+         tipvaluebox_change_made();
+      }
+      private void tipvaluebox_LostFocus(object sender, RoutedEventArgs e) {
+         tipvaluebox_change_made();
       }
       private void TipPercentBoxChange() {
          if(tippercentdsp.Text == null || tippercentdsp.Text == "") tippercentdsp.Text = "0";
@@ -250,6 +256,8 @@ namespace TipCalculator {
       }
      
       #endregion Tapping!
+
+      
      
       #endregion
       

@@ -220,43 +220,13 @@
             <ColumnDefinition />
          </Grid.ColumnDefinitions>
          <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,16,0,0" x:Name="billlbl" Text="Bill" VerticalAlignment="Top" Width="93" FontFamily="Lindsey" FontSize="26.667" />
-         <TextBox Height="72" HorizontalAlignment="Right" x:Name="billbox" Text="0" VerticalAlignment="Top" Width="142" Tap="billbox_Tap" Margin="0,0,217,0" d:LayoutOverrides="GridBox, HorizontalMargin" TextChanged="GUIEventTextChangedCallRecalculateEverything" />
+         <TextBox Height="72" HorizontalAlignment="Right" x:Name="billbox" Text="0" VerticalAlignment="Top" Width="142" Tap="billbox_Tap" Margin="0,0,217,0" d:LayoutOverrides="GridBox, HorizontalMargin" LostFocus="GUIEventRoutedEventArgsCallRecalculateEverything" />
          <TextBlock Height="30" HorizontalAlignment="Left" Margin="9,403,0,0" x:Name="taxblock" Text="Tax%" VerticalAlignment="Top" />
-<!-- <<<<<<< HEAD
-         <TextBox Height="39" HorizontalAlignment="Left" Margin="77,394,0,0" x:Name="taxbox" Text="0" VerticalAlignment="Top" Width="49" />
-         <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,159,0,0" x:Name="numpeoplelbl" Text="# People" VerticalAlignment="Top" Width="116" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="109,142,0,0" x:Name="peoplebox" Text="1" VerticalAlignment="Top" Width="72" />
-         <Button Content="CALCULATE" Height="38" HorizontalAlignment="Left" Margin="189,394,0,0" x:Name="calculatebtn" VerticalAlignment="Top" Width="50" Click="calculatebtn_Click" Grid.ColumnSpan="2" />
-         <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,230,0,0" x:Name="tippercentlbl" Text="Tip %" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,293,0,0" Name="tipdollarlbl" Text="Tip $" VerticalAlignment="Top" Width="59" />
-            <TextBox Height="72" HorizontalAlignment="Left" Margin="66,266,0,0" Name="tipBox" Text="0" VerticalAlignment="Top" Width="153" TextChanged="textBox1_TextChanged" />
-         <CheckBox Content="Before tax" Grid.Column="1" Height="77" HorizontalAlignment="Right" Margin="0,0,6,0" Name="taxflagcheck" VerticalAlignment="Top" Width="188" Checked="taxflag_Checked" Unchecked="taxflag_Unchecked" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="15,86,0,0" Name="taxpercentlbl" Text="Tax %" VerticalAlignment="Top" />
-            <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,0,0" Name="taxtextbox" Text="0" VerticalAlignment="Top" Width="142" />
-            <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="0,142,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Plus.jpg" Tap="plus1_Click" />
-            <Image Grid.Column="1" Height="60" HorizontalAlignment="Left" Margin="66,142,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="60" Source="/TipCalculator;component/Resource/Minus.jpg" Tap="minus1_Click" />
-        
-      </Grid>
-      <Grid Grid.Row="1" Height="150" HorizontalAlignment="Left" Margin="15,359,0,0" x:Name="dataPanel" VerticalAlignment="Top" Width="436">
-         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="22*"/>
-                <ColumnDefinition Width="294*" />
-                <ColumnDefinition Width="120*"/>
-         </Grid.ColumnDefinitions>
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,42,0,0" x:Name="totaltipblock" Text="Tip : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="3,0,0,116" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="233" Grid.ColumnSpan="2" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,78,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
-         <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,114,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="233" Grid.ColumnSpan="2" />
-      </Grid>
-      <my:AdControl AdUnitId="Image480_80" ApplicationId="test_client" Grid.Row="1" Height="80" HorizontalAlignment="Left" Margin="0,515,0,0" x:Name="adControl1" VerticalAlignment="Top" Width="480" />
-   </Grid>
-=======
- -->         
          <TextBlock Height="39" HorizontalAlignment="Left" Margin="6,145,0,0" x:Name="numpeoplelbl" Text="# People" VerticalAlignment="Top" Width="116" FontFamily="Lindsey" FontSize="26.667" d:LayoutOverrides="HorizontalAlignment" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="117,130,0,0" x:Name="peoplebox" Text="1" VerticalAlignment="Top" Width="72" d:LayoutOverrides="HorizontalAlignment" Tap="peoplebox_Tap" TextChanged="GUIEventTextChangedCallRecalculateEverything" />
+         <TextBox Height="72" HorizontalAlignment="Left" Margin="117,130,0,0" x:Name="peoplebox" Text="1" VerticalAlignment="Top" Width="72" d:LayoutOverrides="HorizontalAlignment" Tap="peoplebox_Tap" LostFocus="GUIEventRoutedEventArgsCallRecalculateEverything" />
          <TextBlock Height="37" HorizontalAlignment="Left" Margin="9,208,0,0" x:Name="tippercentlbl" Text="Tip %" VerticalAlignment="Top" FontFamily="Lindsey" FontSize="26.667" Width="81" />
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,273,0,0" Name="tipdollarlbl" Text="Tip $" VerticalAlignment="Top" Width="74" FontFamily="Lindsey" FontSize="26.667" />
-         <TextBox Height="72" HorizontalAlignment="Left" Margin="97,253,0,0" Name="tipvaluebox" Text="0" VerticalAlignment="Top" Width="153" d:LayoutOverrides="GridBox" Tap="tipvaluebox_Tap" TextChanged="tipvaluebox_TextChanged" />
+         <TextBox Height="72" HorizontalAlignment="Left" Margin="97,253,0,0" Name="tipvaluebox" Text="0" VerticalAlignment="Top" Width="153" d:LayoutOverrides="GridBox" Tap="tipvaluebox_Tap" LostFocus="tipvaluebox_LostFocus" />
          <CheckBox Content="Before tax" Height="77" HorizontalAlignment="Right" Margin="0,0,6,0" Name="taxflagcheck" VerticalAlignment="Top" Width="188" Checked="taxflag_Checked" Unchecked="taxflag_Unchecked" d:LayoutOverrides="HorizontalAlignment" />
             <TextBlock Height="30" HorizontalAlignment="Left" Margin="6,85,0,0" Name="taxpercentlbl" Text="Tax %" VerticalAlignment="Top" FontFamily="Lindsey" FontSize="26.667" />
             <TextBox Height="72" HorizontalAlignment="Right" Margin="0,64,217,0" Name="taxtextbox" Text="0" VerticalAlignment="Top" Width="142" d:LayoutOverrides="GridBox, HorizontalMargin" Tap="taxtextbox_Tap" LostFocus="GUIEventRoutedEventArgsCallRecalculateEverything" />
@@ -281,18 +251,4 @@
          </Grid>
       </Border>
     </Grid>
-<!-- >>>>>>> 1cefefb3f9ea34f679f47a368132450960c5bcd4 -->
- 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
 </phone:PhoneApplicationPage>
