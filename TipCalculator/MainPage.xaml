@@ -244,9 +244,9 @@
                <ColumnDefinition Width="427*" />
                <ColumnDefinition Width="6*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock HorizontalAlignment="Left" Margin="8,49,0,0" x:Name="totaltipblock" Text="Tip : " Width="428" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" Height="40" VerticalAlignment="Top" />
-            <TextBlock Height="41" HorizontalAlignment="Left" Margin="8,0,0,132" x:Name="totalbillblock" Text="Bill : " VerticalAlignment="Bottom" Width="417" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
-            <TextBlock Height="42" HorizontalAlignment="Left" Margin="8,93,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="416" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
+            <TextBlock HorizontalAlignment="Left" Margin="7,21,0,0" x:Name="totaltipblock" Text="Total Tip :" Width="428" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" Height="40" VerticalAlignment="Top" />
+            <TextBlock Height="41" HorizontalAlignment="Left" Margin="7,0,0,40" x:Name="totalbillblock" Text="Total Bill : " VerticalAlignment="Bottom" Width="417" FontFamily="Lindsey" FontSize="29.333" Grid.ColumnSpan="2" />
+            <TextBlock Height="42" HorizontalAlignment="Left" Margin="9,57,0,0" x:Name="tipperperson" Text="Tip Per Person : " VerticalAlignment="Top" Width="416" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
             <TextBlock Height="38" HorizontalAlignment="Left" Margin="8,139,0,0" x:Name="totalperpersonblock" Text="Total Per Person : " VerticalAlignment="Top" Width="417" Grid.ColumnSpan="2" FontFamily="Lindsey" FontSize="29.333" />
          </Grid>
       </Border>
