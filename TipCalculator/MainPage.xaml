@@ -145,11 +145,7 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonDown">
-                                    <ec:NavigateToPageAction TargetPage="/PhonePage1.xaml"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                            
                             <Grid x:Name="HorizontalTemplate" Margin="{StaticResource PhoneHorizontalMargin}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>

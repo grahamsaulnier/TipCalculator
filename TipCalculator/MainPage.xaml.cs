@@ -78,7 +78,18 @@ namespace TipCalculator {
         private void PickSomethingToSay(int tier) {
             //TODO implement
         }
+        /*
+         * http://stackoverflow.com/questions/6951335/using-string-format-to-show-decimal-upto-2-places-or-simple-integer
+         * */
+        private string DoFormat(double myNumber) {
+            var s = string.Format("{0:0.00}", myNumber);
 
+          //  if(s.EndsWith("00")) {
+         //       return ((int)myNumber).ToString();
+         //   } else {
+                return s;
+          //  }
+        }
         private void RecalculateEverything() {
             if(initialized) {
                 if(billbox.Text == null || billbox.Text == "") billbox.Text = "0";
@@ -86,7 +97,6 @@ namespace TipCalculator {
                 if(tipvaluebox.Text == null || tipvaluebox.Text == "") tipvaluebox.Text = "0";
                 if(peoplebox.Text == null || peoplebox.Text == "" || peoplebox.Text == "0")
                     peoplebox.Text = "1";
-                //TODO set the temptip chars to nothing if they are not periods
                 double bill =
                    System.Convert.ToDouble(billbox.Text[billbox.Text.Length - 1] == '.' ?
                                            billbox.Text + "00" : billbox.Text);
@@ -105,13 +115,20 @@ namespace TipCalculator {
                 tip = TipCalFS.GetTipBeforeTax(bill, tax / 100, tippercent / 100);
                 //}
                 //  }
-                totalbillblock.Text = BILL + (bill + tip).ToString("#.##");
-                totaltipblock.Text = TIP + tip.ToString("#.##");
+                // was using this to put a 0 in front of everything but now we have a function to do that. 
+                // keeping the variable here in case we need it for something else
+                String total_bill_prefix = "";
+                totalbillblock.Text = BILL + total_bill_prefix + DoFormat(bill + tip);
+                String total_tip_prefix =  "";
+                totaltipblock.Text = TIP + total_tip_prefix + DoFormat(tip);
                 totalbillblock.Visibility = Visibility.Visible;
                 totaltipblock.Visibility = Visibility.Visible;
                 if(people > 1) {
-                    tipperperson.Text = TIPPP + (tip / people).ToString("#.##");
-                    totalperpersonblock.Text = BILLPP + ((bill + tip) / people).ToString("#.##");
+                    String tip_per_person_prefix =  "";
+                    tipperperson.Text = TIPPP + tip_per_person_prefix + DoFormat(tip / people);
+                    String total_per_person_prefix =  "";
+                    totalperpersonblock.Text = BILLPP + total_per_person_prefix +
+                        DoFormat((bill + tip) / people);
                     totalperpersonblock.Visibility = Visibility.Visible;
                     tipperperson.Visibility = Visibility.Visible;
                 } else {
